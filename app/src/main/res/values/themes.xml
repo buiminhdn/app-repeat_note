@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base theme for the app (light, no action bar) -->
+    <style name="Theme.RepeatNote" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#F7F7F7</item>
+        <item name="android:navigationBarColor">#F7F7F7</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- Splash screen theme (dark background) -->
+    <style name="Theme.RepeatNote.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#111111</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.RepeatNote</item>
+    </style>
+
+</resources>

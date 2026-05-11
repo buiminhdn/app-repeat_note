@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Repeat Note</string>
+    <string name="widget_description">Shows rotating notes from your collection on the home screen</string>
+</resources>
