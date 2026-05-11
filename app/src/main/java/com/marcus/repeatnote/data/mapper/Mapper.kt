@@ -14,7 +14,7 @@ fun MemoryNoteEntity.toDomain(): Note = Note(
     category = try {
         Category.valueOf(category)
     } catch (_: IllegalArgumentException) {
-        Category.CUSTOM
+        Category.OTHER
     },
     createdAt = createdAt,
 )

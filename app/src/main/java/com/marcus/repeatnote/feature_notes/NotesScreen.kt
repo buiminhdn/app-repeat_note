@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -35,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -69,8 +73,8 @@ fun NotesScreen(
             FloatingActionButton(
                 onClick = { viewModel.onEvent(NotesContract.Event.AddNoteClicked) },
                 shape = MaterialTheme.shapes.large,
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
+                containerColor = Color(0xFF111111),
+                contentColor = Color.White,
                 modifier = Modifier.size(56.dp),
             ) {
                 Icon(
@@ -79,7 +83,7 @@ fun NotesScreen(
                 )
             }
         },
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = Color(0xFFF9F8F6),
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -212,7 +216,8 @@ fun NotesScreen(
                     viewModel.onEvent(NotesContract.Event.BottomSheetDismissed)
                 },
                 sheetState = sheetState,
-                containerColor = MaterialTheme.colorScheme.surface,
+                modifier = Modifier.statusBarsPadding(),
+                containerColor = Color(0xFFFFFFFF),
                 shape = MaterialTheme.shapes.large,
                 dragHandle = {
                     Box(
@@ -231,7 +236,7 @@ fun NotesScreen(
                             androidx.compose.material3.Surface(
                                 modifier = Modifier.fillMaxSize(),
                                 shape = MaterialTheme.shapes.small,
-                                color = MaterialTheme.colorScheme.outline,
+                                color = Color(0xFFDDDBD8),
                                 content = {},
                             )
                         }

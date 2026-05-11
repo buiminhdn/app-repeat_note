@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.Card
@@ -27,6 +28,35 @@ import com.marcus.repeatnote.ui.theme.Accent
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.compose.ui.graphics.Color
+import kotlin.math.absoluteValue
+
+private val noteColors = listOf(
+    Color(0xFFFFFDF5),
+    Color(0xFFF2F7F2),
+    Color(0xFFFFFFFF),
+    Color(0xFFFFF5F0),
+    Color(0xFFF5F5FF),
+    Color(0xFFF5FAFA)
+)
+
+private val noteBorders = listOf(
+    Color(0xFFD1CFC8),
+    Color(0xFFC6CAC6),
+    Color(0xFFD1D1D1),
+    Color(0xFFD1C8C4),
+    Color(0xFFC8C8D1),
+    Color(0xFFC8CDCD)
+)
+
+private val noteTags = listOf(
+    Color(0xFFF5EDDA),
+    Color(0xFFE4F0E4),
+    Color(0xFFF5F5F5),
+    Color(0xFFFCE3D7),
+    Color(0xFFE6E6FA),
+    Color(0xFFE0F0F0)
+)
 
 @Composable
 fun NoteCard(
@@ -34,14 +64,19 @@ fun NoteCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val colorIndex = (note.id.absoluteValue % 6).toInt()
+    val bgColor = noteColors[colorIndex]
+    val borderColor = noteBorders[colorIndex]
+    val tagColor = noteTags[colorIndex]
+
     Card(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = bgColor,
         ),
-        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline),
+        border = BorderStroke(1.5.dp, borderColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
         Column(
@@ -90,13 +125,13 @@ fun NoteCard(
             ) {
                 // Category tag
                 Surface(
-                    shape = MaterialTheme.shapes.small,
-                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    shape = CircleShape,
+                    color = tagColor,
                 ) {
                     Text(
                         text = note.category.displayName,
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = Color(0xFF888888),
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                     )
                 }

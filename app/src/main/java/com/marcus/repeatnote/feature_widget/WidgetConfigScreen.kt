@@ -1,6 +1,8 @@
 package com.marcus.repeatnote.feature_widget
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,7 +11,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
@@ -22,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.marcus.repeatnote.domain.model.RotationMode
@@ -32,11 +38,17 @@ fun WidgetConfigScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color(0xFFF9F8F6),
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .systemBarsPadding()
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+        ) {
         Text(
             text = "Widget Setup",
             style = MaterialTheme.typography.headlineMedium,
@@ -72,12 +84,12 @@ fun WidgetConfigScreen(
                     )
                 },
                 modifier = Modifier.height(32.dp),
-                shape = MaterialTheme.shapes.small,
+                shape = CircleShape,
                 colors = FilterChipDefaults.filterChipColors(
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    selectedContainerColor = MaterialTheme.colorScheme.primary,
-                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                    selectedContainerColor = Color(0xFF111111),
+                    selectedLabelColor = Color(0xFFFFF8F0),
                 ),
                 border = null,
             )
@@ -97,12 +109,12 @@ fun WidgetConfigScreen(
                         )
                     },
                     modifier = Modifier.height(32.dp),
-                    shape = MaterialTheme.shapes.small,
+                    shape = CircleShape,
                     colors = FilterChipDefaults.filterChipColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                        selectedContainerColor = MaterialTheme.colorScheme.primary,
-                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                        selectedContainerColor = Color(0xFF111111),
+                        selectedLabelColor = Color(0xFFFFF8F0),
                     ),
                     border = null,
                 )
@@ -123,7 +135,11 @@ fun WidgetConfigScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp),
+                    .background(
+                        color = if (state.rotationMode == mode) Color(0xFFFFF8F0) else Color.Transparent,
+                        shape = MaterialTheme.shapes.small
+                    )
+                    .padding(vertical = 4.dp, horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 RadioButton(
@@ -165,8 +181,8 @@ fun WidgetConfigScreen(
                 .height(52.dp),
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
+                containerColor = Color(0xFF1A1A1A),
+                contentColor = Color.White,
             ),
             enabled = !state.isSaving,
         ) {
@@ -177,5 +193,6 @@ fun WidgetConfigScreen(
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+        }
     }
 }

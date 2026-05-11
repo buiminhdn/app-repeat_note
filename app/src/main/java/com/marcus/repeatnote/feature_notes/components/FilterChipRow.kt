@@ -2,6 +2,7 @@ package com.marcus.repeatnote.feature_notes.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.marcus.repeatnote.domain.model.Category
 
@@ -40,12 +42,12 @@ fun FilterChipRow(
                 )
             },
             modifier = Modifier.height(32.dp),
-            shape = MaterialTheme.shapes.small,
+            shape = CircleShape,
             colors = FilterChipDefaults.filterChipColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                selectedContainerColor = MaterialTheme.colorScheme.primary,
-                selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                selectedContainerColor = Color(0xFF111111),
+                selectedLabelColor = Color(0xFFFFF8F0),
             ),
             border = null,
         )
@@ -62,12 +64,12 @@ fun FilterChipRow(
                     )
                 },
                 modifier = Modifier.height(32.dp),
-                shape = MaterialTheme.shapes.small,
+                shape = CircleShape,
                 colors = FilterChipDefaults.filterChipColors(
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    selectedContainerColor = MaterialTheme.colorScheme.primary,
-                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                    selectedContainerColor = Color(0xFF111111),
+                    selectedLabelColor = Color(0xFFFFF8F0),
                 ),
                 border = null,
             )

@@ -1,6 +1,7 @@
 package com.marcus.repeatnote.feature_notes.components
 
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
@@ -45,7 +47,7 @@ fun AddEditNoteSheet(
         mutableStateOf(editingNote?.content ?: "")
     }
     var selectedCategory by remember(editingNote) {
-        mutableStateOf(editingNote?.category ?: Category.CUSTOM)
+        mutableStateOf(editingNote?.category ?: Category.OTHER)
     }
 
     Column(
@@ -54,7 +56,8 @@ fun AddEditNoteSheet(
             .padding(horizontal = 16.dp)
             .padding(top = 24.dp)
             .navigationBarsPadding()
-            .imePadding(),
+            .imePadding()
+            .verticalScroll(rememberScrollState()),
     ) {
         // Title
         Text(
@@ -141,12 +144,12 @@ fun AddEditNoteSheet(
                         )
                     },
                     modifier = Modifier.height(32.dp),
-                    shape = MaterialTheme.shapes.small,
+                    shape = CircleShape,
                     colors = FilterChipDefaults.filterChipColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                        selectedContainerColor = MaterialTheme.colorScheme.primary,
-                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                        selectedContainerColor = Color(0xFF111111),
+                        selectedLabelColor = Color(0xFFFFF8F0),
                     ),
                     border = null,
                 )
@@ -167,8 +170,8 @@ fun AddEditNoteSheet(
                 .height(52.dp),
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
+                containerColor = Color(0xFF1A1A1A),
+                contentColor = Color.White,
             ),
             enabled = title.isNotBlank(),
         ) {

@@ -1,5 +1,6 @@
 package com.marcus.repeatnote.feature_notes.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -28,7 +29,8 @@ fun SearchBar(
         onValueChange = onQueryChanged,
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp),
+            .height(52.dp)
+            .border(1.dp, Color(0xFFE8E8E8), MaterialTheme.shapes.medium),
         placeholder = {
             Text(
                 text = "Search notes...",
@@ -60,8 +62,8 @@ fun SearchBar(
         textStyle = MaterialTheme.typography.bodyLarge,
         shape = MaterialTheme.shapes.medium,
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            focusedContainerColor = Color(0xFFFFFFFF),
+            unfocusedContainerColor = Color(0xFFFFFFFF),
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent,

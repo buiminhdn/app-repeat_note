@@ -91,7 +91,7 @@ class MemoryWidget : GlanceAppWidget() {
         Box(
             modifier = GlanceModifier
                 .fillMaxSize()
-                .background(White)
+                .background(androidx.glance.unit.ColorProvider(androidx.compose.ui.graphics.Color(0xFFFFFDF5)))
                 .clickable(actionStartActivity<MainActivity>()),
         ) {
             if (uiState.isEmpty) {
